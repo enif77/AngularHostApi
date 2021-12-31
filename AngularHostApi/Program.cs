@@ -7,28 +7,29 @@ using AngularHostApi.Logging;
 // Console.WriteLine("The app is running. Press ENTER to start the app server...");
 // _ = Console.ReadLine();  // This represents a running application (the launcher) before it runs the app itself.
 
+ILogger logger;
 
 var appServer = BuildAppServer(args);
 
-Console.WriteLine("Starting the app server...");
+logger.LogInformation("Starting the app server...");
 
 await appServer.StartAsync();
 
-Console.WriteLine("The app server is started. Press ENTER to stop the app server...");
+logger.LogInformation("The app server is started. Press ENTER to stop the app server...");
 
 _ = Console.ReadLine();  // This represents a running application (the launcher).
 
-Console.WriteLine("Stopping the app server...");
+logger.LogInformation("Stopping the app server...");
     
 var status = await appServer.StopAsync();
     
-Console.WriteLine("\nTask status: {0}", status);
+logger.LogInformation("Task status: {Status}", status);
 
-Console.WriteLine("DONE!");
+logger.LogInformation("DONE!");
 
 // ---
 
-static IAppServer BuildAppServer(string[] args)
+IAppServer BuildAppServer(string[] args)
 {
     var builder = WebApplication.CreateBuilder(new WebApplicationOptions
     {
@@ -53,6 +54,9 @@ static IAppServer BuildAppServer(string[] args)
     // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
     builder.Services.AddEndpointsApiExplorer();
     builder.Services.AddSwaggerGen();
+    
+    // This removes the CTRL+C app shutdown.
+    builder.Services.AddSingleton<IHostLifetime, NoopConsoleLifetime>();
 
     var app = builder.Build();
             
@@ -69,14 +73,13 @@ static IAppServer BuildAppServer(string[] args)
     app.UseDefaultFiles();
     app.UseStaticFiles();
 
-    // app.UseAuthorization();
+    app.UseAuthorization();
 
     app.MapControllers();
-            
-    return new AppServer(
-        app,
-        //app.Services.GetRequiredService<ILogger<AppServerService>>()
-        app.Logger);
+
+    logger = app.Logger;
+    
+    return new AppServer(app, app.Logger);
 }
 
 /*
