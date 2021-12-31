@@ -1,5 +1,7 @@
 /* AngularHostApi - (C) 2021 Premysl Fara  */
 
+using AngularHostApi.Logging;
+
 namespace AngularHostApi.Services
 {
     public class AppServerService
@@ -95,9 +97,17 @@ namespace AngularHostApi.Services
             var builder = WebApplication.CreateBuilder(new WebApplicationOptions
             {
                 Args = args,
-
+            
                 // A path to a dist directory of an Angular app.
                 WebRootPath = "/home/enif/Devel/Projects/Web/Angular/my-app/dist/my-app/"    
+            });
+
+            builder.Logging.ClearProviders();
+            //builder.Logging.AddConsole();
+            builder.Logging.AddColorConsoleLogger(configuration =>
+            {
+                configuration.LogLevels.Add(LogLevel.Warning, ConsoleColor.DarkMagenta);
+                configuration.LogLevels.Add(LogLevel.Error, ConsoleColor.Red);
             });
 
             // Add services to the container.
