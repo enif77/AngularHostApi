@@ -1,11 +1,11 @@
 /* AngularHostApi - (C) 2021 Premysl Fara  */
 
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-
 namespace AngularHostApi.AppServer;
 
 using System.Text;
+
+using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 
 
 public class AppServer : IAppServer

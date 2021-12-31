@@ -2,6 +2,7 @@
 
 namespace AngularHostApi.AppServer;
 
+
 public interface IAppServer
 {
     Task StartAsync(CancellationTokenSource? tokenSource = null);
