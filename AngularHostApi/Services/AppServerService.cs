@@ -51,11 +51,19 @@ namespace AngularHostApi.Services
             // app.UseAuthorization();
 
             app.MapControllers();
-
+            
             return new AppServer(
                 app,
-                app.Services.GetRequiredService<ILogger<AppServerService>>());
+                //app.Services.GetRequiredService<ILogger<AppServerService>>()
+                app.Logger
+                );
         }
     }    
 }
 
+/*
+ 
+https://docs.microsoft.com/en-us/aspnet/core/migration/50-to-60-samples?view=aspnetcore-6.0
+  
+ */
+ 
