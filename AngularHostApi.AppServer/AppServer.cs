@@ -1,4 +1,9 @@
-namespace AngularHostApi.Services;
+/* AngularHostApi - (C) 2021 Premysl Fara  */
+
+using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
+
+namespace AngularHostApi.AppServer;
 
 using System.Text;
 

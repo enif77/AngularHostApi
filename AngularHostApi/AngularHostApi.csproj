@@ -11,6 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\AngularHostApi.AppServer\AngularHostApi.AppServer.csproj" />
     <ProjectReference Include="..\AngularHostApi.Logging\AngularHostApi.Logging.csproj" />
   </ItemGroup>
 
