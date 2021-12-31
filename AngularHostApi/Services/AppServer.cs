@@ -3,16 +3,16 @@ namespace AngularHostApi.Services;
 using System.Text;
 
 
-public class AppServer
+public class AppServer : IAppServer
 {
-    private readonly WebApplication _app;
+    private readonly IHost _app;
     private Task? _appServerTask;
     private CancellationTokenSource? _tokenSource;
     private bool _tokenSourceCanBeDisposed;
     private readonly ILogger _logger;
 
 
-    public AppServer(WebApplication app, ILogger logger)
+    public AppServer(IHost app, ILogger logger)
     {
         _app = app ?? throw new ArgumentNullException(nameof(app));
         _logger = logger ?? throw new ArgumentNullException(nameof(logger));

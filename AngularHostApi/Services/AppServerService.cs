@@ -7,7 +7,7 @@ namespace AngularHostApi.Services
     
     public class AppServerService
     {
-        public AppServer CreateAppServer(string[] args)
+        public IAppServer CreateAppServer(string[] args)
         {
             var builder = WebApplication.CreateBuilder(new WebApplicationOptions
             {
