@@ -8,6 +8,8 @@
 /bazel-out
 /bin
 /obj
+bin/
+obj/
 
 # dependencies
 /node_modules
