@@ -1,5 +1,9 @@
 using AngularHostApi.Services;
 
+Console.WriteLine("The app is running. Press ENTER to start the app server...");
+
+_ = Console.ReadLine();  // This represents a running application (the launcher) before it runs the app itself.
+
 
 var appServerService = new AppServerService();
 
@@ -9,7 +13,7 @@ Console.WriteLine("Starting the app server...");
 
 _ = await appServer.StartAsync();
 
-Console.WriteLine("The app server is started.");
+Console.WriteLine("The app server is started. Press ENTER to stop the app server...");
 
 _ = Console.ReadLine();  // This represents a running application (the launcher).
 
