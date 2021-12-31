@@ -55,8 +55,7 @@ namespace AngularHostApi.Services
             return new AppServer(
                 app,
                 //app.Services.GetRequiredService<ILogger<AppServerService>>()
-                app.Logger
-                );
+                app.Logger);
         }
     }    
 }
