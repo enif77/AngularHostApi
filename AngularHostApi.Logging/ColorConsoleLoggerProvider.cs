@@ -1,3 +1,5 @@
+/* AngularHostApi - (C) 2021 Premysl Fara  */
+
 namespace AngularHostApi.Logging;
 
 using System.Collections.Concurrent;
@@ -11,6 +13,7 @@ public sealed class ColorConsoleLoggerProvider : ILoggerProvider
     private ColorConsoleLoggerConfiguration _currentConfig;
     private readonly ConcurrentDictionary<string, ColorConsoleLogger> _loggers = new();
 
+    
     public ColorConsoleLoggerProvider(
         IOptionsMonitor<ColorConsoleLoggerConfiguration> config)
     {
@@ -18,11 +21,14 @@ public sealed class ColorConsoleLoggerProvider : ILoggerProvider
         _onChangeToken = config.OnChange(updatedConfig => _currentConfig = updatedConfig);
     }
 
+    
     public ILogger CreateLogger(string categoryName) =>
         _loggers.GetOrAdd(categoryName, name => new ColorConsoleLogger(name, GetCurrentConfig));
 
+    
     private ColorConsoleLoggerConfiguration GetCurrentConfig() => _currentConfig;
 
+    
     public void Dispose()
     {
         _loggers.Clear();

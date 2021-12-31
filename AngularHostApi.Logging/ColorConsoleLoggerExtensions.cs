@@ -1,3 +1,5 @@
+/* AngularHostApi - (C) 2021 Premysl Fara  */
+
 namespace AngularHostApi.Logging;
 
 using Microsoft.Extensions.DependencyInjection;
@@ -5,10 +7,10 @@ using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Configuration;
 
+
 public static class ColorConsoleLoggerExtensions
 {
-    public static ILoggingBuilder AddColorConsoleLogger(
-        this ILoggingBuilder builder)
+    public static ILoggingBuilder AddColorConsoleLogger(this ILoggingBuilder builder)
     {
         builder.AddConfiguration();
 
@@ -21,6 +23,7 @@ public static class ColorConsoleLoggerExtensions
         return builder;
     }
 
+    
     public static ILoggingBuilder AddColorConsoleLogger(
         this ILoggingBuilder builder,
         Action<ColorConsoleLoggerConfiguration> configure)
