@@ -19,7 +19,7 @@ public class AppServer : IAppServer
     }
 
 
-    public async Task<bool> StartAsync(CancellationTokenSource? tokenSource = null)
+    public async Task StartAsync(CancellationTokenSource? tokenSource = null)
     {
         if (_appServerTask != null) throw new InvalidOperationException("The app server is already running.");
 
@@ -53,8 +53,6 @@ public class AppServer : IAppServer
         await Task.Yield();
 
         _appServerTask = t;
-
-        return true;
     }
 
 

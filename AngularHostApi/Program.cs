@@ -11,7 +11,7 @@ var appServer = appServerService.CreateAppServer(args);
 
 Console.WriteLine("Starting the app server...");
 
-_ = await appServer.StartAsync();
+await appServer.StartAsync();
 
 Console.WriteLine("The app server is started. Press ENTER to stop the app server...");
 
