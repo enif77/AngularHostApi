@@ -17,6 +17,8 @@ public sealed class ColorConsoleLoggerProvider : ILoggerProvider
     public ColorConsoleLoggerProvider(
         IOptionsMonitor<ColorConsoleLoggerConfiguration> config)
     {
+        if (config == null) throw new ArgumentNullException(nameof(config));
+        
         _currentConfig = config.CurrentValue;
         _onChangeToken = config.OnChange(updatedConfig => _currentConfig = updatedConfig);
     }

@@ -12,6 +12,8 @@ public static class ColorConsoleLoggerExtensions
 {
     public static ILoggingBuilder AddColorConsoleLogger(this ILoggingBuilder builder)
     {
+        if (builder == null) throw new ArgumentNullException(nameof(builder));
+        
         builder.AddConfiguration();
 
         builder.Services.TryAddEnumerable(
@@ -28,6 +30,9 @@ public static class ColorConsoleLoggerExtensions
         this ILoggingBuilder builder,
         Action<ColorConsoleLoggerConfiguration> configure)
     {
+        if (builder == null) throw new ArgumentNullException(nameof(builder));
+        if (configure == null) throw new ArgumentNullException(nameof(configure));
+        
         builder.AddColorConsoleLogger();
         builder.Services.Configure(configure);
 
