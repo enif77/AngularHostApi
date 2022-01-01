@@ -12,6 +12,9 @@ public static class CustomLoggerExtensions
 {
     public static ILoggingBuilder AddCustomLogger(this ILoggingBuilder builder, ILogger logger)
     {
+        if (builder == null) throw new ArgumentNullException(nameof(builder));
+        if (logger == null) throw new ArgumentNullException(nameof(logger));
+
         builder.AddConfiguration();
 
         builder.Services.TryAddSingleton(logger);
