@@ -14,13 +14,14 @@ public class AppServer : IAppServer
     private Task? _appServerTask;
     private CancellationTokenSource? _tokenSource;
     private bool _tokenSourceCanBeDisposed;
-    private readonly ILogger _logger;
+
+    public ILogger Logger { get; }
 
 
     public AppServer(IHost app, ILogger logger)
     {
         _app = app ?? throw new ArgumentNullException(nameof(app));
-        _logger = logger ?? throw new ArgumentNullException(nameof(logger));
+        Logger = logger ?? throw new ArgumentNullException(nameof(logger));
     }
 
 
@@ -52,7 +53,7 @@ public class AppServer : IAppServer
             // https://github.com/aspnet/Hosting/blob/master/src/Microsoft.Extensions.Hosting.Abstractions/HostingAbstractionsHostExtensions.cs
             await _app.RunAsync(token);
             
-            _logger.LogInformation("The app server stopped");
+            Logger.LogInformation("The app server stopped");
         }, token);
 
         await Task.Yield();
@@ -83,7 +84,7 @@ public class AppServer : IAppServer
                 sb.AppendLine($"   {ie.GetType().Name}: {ie.Message}");
             }
             
-            _logger.LogError(sb.ToString());
+            Logger.LogError(sb.ToString());
         }
         finally
         {
