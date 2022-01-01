@@ -1,5 +1,7 @@
 /* AngularHostApi - (C) 2021 Premysl Fara  */
 
+using Microsoft.Extensions.Logging;
+
 namespace AngularHostApi.AppServer;
 
 using System.Reflection;
@@ -21,4 +23,9 @@ public class AppServerOptions
     /// The list of assemblies containing controllers.
     /// </summary>
     public IList<Assembly> AssembliesWithControllers { get; } = new List<Assembly>();
+
+    /// <summary>
+    /// An optional ILogger instance.
+    /// </summary>
+    public ILogger? Logger { get; set; }
 }
