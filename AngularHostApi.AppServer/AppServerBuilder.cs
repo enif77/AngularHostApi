@@ -13,14 +13,16 @@ using AngularHostApi.Logging;
 
 public static class AppServerBuilder
 {
-    public static IAppServer Build(string[] args)
+    public static IAppServer Build(AppServerOptions? options = null)
     {
+        options ??= new AppServerOptions();
+
         var builder = WebApplication.CreateBuilder(new WebApplicationOptions
         {
-            Args = args,
-            
-            // A path to a dist directory of an Angular app.
-            WebRootPath = "/home/enif/Devel/Projects/Web/Angular/my-app/dist/my-app/"    
+            Args = options.Args,
+            WebRootPath = string.IsNullOrWhiteSpace(options.WebRootPath)
+                ? Path.Combine(Directory.GetCurrentDirectory(), "wwwroot")
+                : options.WebRootPath
         });
 
         builder.Logging.ClearProviders();
@@ -33,8 +35,16 @@ public static class AppServerBuilder
 
         // Add services to the container.
 
-        builder.Services.AddControllers();
+        var mvcBuilder = builder.Services.AddControllers()
+            .AddApplicationPart(typeof(AppServerBuilder).Assembly); // This adds controllers from this assembly.
 
+        // This adds controllers from this user defined assemblies.
+        foreach (var assembly in options.AssembliesWithControllers)
+        {
+            mvcBuilder.AddApplicationPart(assembly);
+        }
+        
+        
         // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen();
