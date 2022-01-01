@@ -21,7 +21,8 @@ var appServerOptions = new AppServerOptions()
 {
     Args = args,
     WebRootPath = "/home/enif/Devel/Projects/Web/Angular/my-app/dist/my-app/",
-    Logger = new ColorConsoleLogger("test", () => c)
+    Logger = new ColorConsoleLogger("test", () => c),
+    MinimumLogLevel = LogLevel.Information
 };
 
 // Add controller(s) from the features project.

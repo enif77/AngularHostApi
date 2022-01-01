@@ -28,4 +28,9 @@ public class AppServerOptions
     /// An optional ILogger instance.
     /// </summary>
     public ILogger? Logger { get; set; }
+
+    /// <summary>
+    /// Gets or sets the minimum log level.
+    /// </summary>
+    public LogLevel MinimumLogLevel { get; set; } = LogLevel.Information;
 }

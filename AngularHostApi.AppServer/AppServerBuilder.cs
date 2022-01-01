@@ -44,6 +44,7 @@ public static class AppServerBuilder
             // builder.Logging.AddCustomLogger(new ColorConsoleLogger("test", () => c));
             
             builder.Logging.AddCustomLogger(options.Logger);
+            builder.Logging.SetMinimumLevel(options.MinimumLogLevel);
         }
 
         // Add services to the container.
