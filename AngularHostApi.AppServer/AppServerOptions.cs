@@ -1,7 +1,5 @@
 /* AngularHostApi - (C) 2021 Premysl Fara  */
 
-using Microsoft.Extensions.Logging;
-
 namespace AngularHostApi.AppServer;
 
 using System.Reflection;
@@ -25,12 +23,7 @@ public class AppServerOptions
     public IList<Assembly> AssembliesWithControllers { get; } = new List<Assembly>();
 
     /// <summary>
-    /// An optional ILogger instance.
+    /// An optional custom logging configurator.
     /// </summary>
-    public ILogger? Logger { get; set; }
-
-    /// <summary>
-    /// Gets or sets the minimum log level.
-    /// </summary>
-    public LogLevel MinimumLogLevel { get; set; } = LogLevel.Information;
+    public ILoggerConfigurator? LoggerConfigurator { get; set; }
 }

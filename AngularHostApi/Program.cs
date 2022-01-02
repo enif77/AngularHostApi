@@ -1,28 +1,30 @@
 /* AngularHostApi - (C) 2021 Premysl Fara  */
 
+using AngularHostApi;
 using Microsoft.Extensions.Logging;
 
 using AngularHostApi.AppServer;
 using AngularHostApi.Features.Controllers;
 using AngularHostApi.Logging;
+using Serilog;
 
 
 // Console.WriteLine("The app is running. Press ENTER to start the app server...");
 // _ = Console.ReadLine();  // This represents a running application (the launcher) before it runs the app itself.
 
 
-var c = new ColorConsoleLoggerConfiguration();
-
-c.LogLevels.Add(LogLevel.Debug, ConsoleColor.Gray);
-c.LogLevels.Add(LogLevel.Warning, ConsoleColor.DarkMagenta);
-c.LogLevels.Add(LogLevel.Error, ConsoleColor.Red);
+Log.Logger = new LoggerConfiguration()
+    .Enrich.FromLogContext()
+    .WriteTo.Console()
+    .CreateLogger();
 
 var appServerOptions = new AppServerOptions()
 {
     Args = args,
     WebRootPath = "/home/enif/Devel/Projects/Web/Angular/my-app/dist/my-app/",
-    Logger = new ColorConsoleLogger("test", () => c),
-    MinimumLogLevel = LogLevel.Information
+    //LoggerConfigurator = new ConsoleLoggerConfigurator()
+    //LoggerConfigurator = new ColorConsoleLoggerConfigurator()
+    LoggerConfigurator = new SerilogLoggerConfigurator()
 };
 
 // Add controller(s) from the features project.

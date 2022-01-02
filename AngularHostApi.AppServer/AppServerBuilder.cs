@@ -25,27 +25,8 @@ public static class AppServerBuilder
                 : options.WebRootPath
         });
 
-        if (options.Logger != null)
-        {
-            builder.Logging.ClearProviders();
-            
-            //builder.Logging.AddConsole();
-            
-            // builder.Logging.AddColorConsoleLogger(configuration =>
-            // {
-            //     configuration.LogLevels.Add(LogLevel.Warning, ConsoleColor.DarkMagenta);
-            //     configuration.LogLevels.Add(LogLevel.Error, ConsoleColor.Red);
-            // });
-
-            // var c = new ColorConsoleLoggerConfiguration();
-            // c.LogLevels.Add(LogLevel.Warning, ConsoleColor.DarkMagenta);
-            // c.LogLevels.Add(LogLevel.Error, ConsoleColor.Red);
-            //
-            // builder.Logging.AddCustomLogger(new ColorConsoleLogger("test", () => c));
-            
-            builder.Logging.AddCustomLogger(options.Logger);
-            builder.Logging.SetMinimumLevel(options.MinimumLogLevel);
-        }
+        // Add custom logging?
+        options.LoggerConfigurator?.Configure(builder.Logging);
 
         // Add services to the container.
 
