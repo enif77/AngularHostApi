@@ -51,5 +51,8 @@ logger.LogInformation("DONE!");
  
 https://docs.microsoft.com/en-us/aspnet/core/migration/50-to-60-samples?view=aspnetcore-6.0
   
+https://blog.datalust.co/using-serilog-in-net-6/   
+https://github.com/serilog/serilog-extensions-logging  
+  
  */
  
