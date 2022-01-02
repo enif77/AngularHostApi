@@ -1,11 +1,11 @@
-/* AngularHostApi - (C) 2021 Premysl Fara  */
+/* AngularHostApi - (C) 2021 - 2022 Premysl Fara  */
 
 using AngularHostApi;
 using Microsoft.Extensions.Logging;
 
 using AngularHostApi.AppServer;
 using AngularHostApi.Features.Controllers;
-using AngularHostApi.Logging;
+
 using Serilog;
 
 
