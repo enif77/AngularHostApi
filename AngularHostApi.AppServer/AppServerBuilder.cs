@@ -1,4 +1,4 @@
-/* AngularHostApi - (C) 2021 Premysl Fara  */
+/* AngularHostApi - (C) 2021 - 2022 Premysl Fara  */
 
 namespace AngularHostApi.AppServer;
 
@@ -6,9 +6,6 @@ using Microsoft.AspNetCore.Builder;
 
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-
-using AngularHostApi.Logging;
 
 
 public static class AppServerBuilder
@@ -65,9 +62,7 @@ public static class AppServerBuilder
         app.UseAuthorization();
 
         app.MapControllers();
-
-        //logger = app.Logger;
-    
+   
         return new AppServer(app, app.Logger);
     }
 }
